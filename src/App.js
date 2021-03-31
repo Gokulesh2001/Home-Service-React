@@ -1,9 +1,9 @@
-
+import Routes from "./Routes";
 
 function App() {
   return (
     <div>
-     <h1>Home Service</h1>
+      <Routes />
     </div>
   );
 }
