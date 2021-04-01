@@ -1,16 +1,14 @@
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import firebaseDb from "../Firebase";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,10 +57,11 @@ export default function SignUp() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("fn called");
+    var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
     firebaseDb
       .database()
       .ref("Login/")
-      .child(values.Email)
+      .child(name)
       .set({
         FirstName: values.fname,
         LastName: values.lname,
