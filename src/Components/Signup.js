@@ -30,15 +30,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+const InititalValues = {
+  fname: "",
+  lname: "",
+  Email: "",
+  Password: "",
+};
 
 export default function SignUp() {
-  const InititalValues = {
-    fname: "",
-    lname: "",
-    Email: "",
-    Password: "",
-  };
-
   var [values, setValues] = useState(InititalValues);
 
   const handleInputChange = (e) => {
@@ -57,17 +56,13 @@ export default function SignUp() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("fn called");
-    var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
-    firebaseDb
-      .database()
-      .ref("Login/")
-      .child(name)
-      .set({
-        FirstName: values.fname,
-        LastName: values.lname,
-        Email: values.Email,
-        Password: values.Password,
-      });
+    var name = values.Email.substring(0, values.Email.lastIndexOf("@"));
+    firebaseDb.database().ref("Login/").child(name).set({
+      FirstName: values.fname,
+      LastName: values.lname,
+      Email: values.Email,
+      Password: values.Password,
+    });
   };
 
   const classes = useStyles();
