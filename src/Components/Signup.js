@@ -57,17 +57,13 @@ export default function SignUp() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("fn called");
-    var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
-    firebaseDb
-      .database()
-      .ref("Login/")
-      .child(name)
-      .set({
-        FirstName: values.fname,
-        LastName: values.lname,
-        Email: values.Email,
-        Password: values.Password,
-      });
+    // var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
+    firebaseDb.database().ref("Login/").child(values.Email).set({
+      FirstName: values.fname,
+      LastName: values.lname,
+      Email: values.Email,
+      Password: values.Password,
+    });
   };
 
   const classes = useStyles();

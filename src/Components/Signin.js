@@ -1,33 +1,31 @@
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import React, { useEffect, useState } from "react";
 import firebaseDb from "../Firebase";
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -36,15 +34,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const InititalValues = {
+    Email: "",
+    Password: "",
+  };
 
-
-    const InititalValues = {
-        Email: "",
-        Password: "",
-      };
-
-
-      var [values, setValues] = useState(InititalValues);
+  var [values, setValues] = useState(InititalValues);
 
   const handleInputChange = (e) => {
     var { name, value } = e.target;
@@ -57,15 +52,11 @@ export default function SignIn() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("fn called");
-    var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
-    firebaseDb
-      .database()
-      .ref("Login/")
-      .child(name)
-      .set({
-        Email: values.Email,
-        Password: values.Password,
-      });
+    // var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
+    firebaseDb.database().ref("Login/").child(values.Email).set({
+      Email: values.Email,
+      Password: values.Password,
+    });
   };
 
   const classes = useStyles();
@@ -135,7 +126,6 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-     
     </Container>
   );
 }
