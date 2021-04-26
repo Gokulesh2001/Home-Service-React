@@ -116,7 +116,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label="Phone Number"
                 name="Phone"
                 autoComplete="lname"
                 value={values.Phone}

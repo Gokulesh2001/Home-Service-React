@@ -69,7 +69,7 @@ class Login extends Component {
         if (snapshot.val()) {
           let dataRetrieved = snapshot.val();
           if (dataRetrieved.position === "User") {
-            if (password === dataRetrieved.password) {
+            if (password === dataRetrieved.Password) {
               this.setState({ isLoggedIn: true });
               this.setState({ isUser: true });
               localStorage.setItem("token", username);
@@ -109,7 +109,7 @@ class Login extends Component {
       localStorage.getItem("token") &&
       localStorage.getItem("Position") === "User"
     ) {
-      return <Redirect to="/HomeStaff" />;
+      return <Redirect to="/ProviderDetails" />;
     }
 
     if (
@@ -139,7 +139,7 @@ class Login extends Component {
                 required
                 fullWidth
                 id="username"
-                label="Email Address"
+                label="Phone number"
                 name="email"
                 // autoComplete="email"
                 autoFocus
