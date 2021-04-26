@@ -37,6 +37,8 @@ export default function SignUp() {
     lname: "",
     Email: "",
     Password: "",
+    Phone:"",
+    position:""
   };
 
   var [values, setValues] = useState(InititalValues);
@@ -58,11 +60,13 @@ export default function SignUp() {
     e.preventDefault();
     console.log("fn called");
     // var name   = values.Email.substring(0, values.Email.lastIndexOf("@"));
-    firebaseDb.database().ref("Login/").child(values.Email).set({
+    firebaseDb.database().ref("Login/").child(values.Phone).set({
       FirstName: values.fname,
       LastName: values.lname,
       Email: values.Email,
       Password: values.Password,
+      Phone: values.Phone,
+      position:values.position,
     });
   };
 
@@ -106,6 +110,19 @@ export default function SignUp() {
                 onChange={handleInputChange}
               />
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="Phone"
+                autoComplete="lname"
+                value={values.Phone}
+                onChange={handleInputChange}
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -130,6 +147,19 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
                 value={values.Password}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Position"
+                name="position"
+                autoComplete="lname"
+                value={values.position}
                 onChange={handleInputChange}
               />
             </Grid>
